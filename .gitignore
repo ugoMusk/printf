@@ -2,7 +2,7 @@
 *~
 # putchar
 _putchar.c
-
+*.c.swp.
 # main
 *main.c
 # origin/master
