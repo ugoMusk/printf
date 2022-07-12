@@ -1,20 +1,21 @@
 #include "main.h"
 
-/* Code Credit : Ugobo Thankgod & Paul Sobande */
+/* Code Credit: Ugobo ThankGod & Paul Sabonde */
 /**
- * _printf - formatted output conversion and print data.
- * @format: input string.
- * Return: number of chars printed.
+ * _printf - prints anything
+ * @format: the format string
+ *
+ * Return: number of bytes printed
  */
-
+/* Code Credit: Ugobo ThankGod & Paul Sabonde  */
 int _printf(const char *format, ...)
 {
 	int add = 0;
-	va_list a_args;
+	va_list aa;
 	char *p, *start;
 	params_t params = PARAMS_INIT;
 
-	va_starta_args, format);
+	va_start(aa, format);
 
 	if (!format || (format[0] == '%' && !format[1]))
 		return (-1);
@@ -22,10 +23,10 @@ int _printf(const char *format, ...)
 		return (-1);
 	for (p = (char *)format; *p; p++)
 	{
-		init_params(&params, a_args);
+		init_params(&params, aa);
 		if (*p != '%')
 		{
-		        add += _putchar(*p);
+			add += _putchar(*p);
 			continue;
 		}
 		start = p;
@@ -34,16 +35,18 @@ int _printf(const char *format, ...)
 		{
 			p++; /* next char */
 		}
-		p = get_width(p, &params, a_args);
-		p = get_precision(p, &params, a_args);
+		p = get_width(p, &params, aa);
+		p = get_precision(p, &params, aa);
 		if (get_modifier(p, &params))
 			p++;
 		if (!get_specifier(p))
-			add += print_from_to(start, p, params.l_modifier || params.h_modifier ? p - 1 : 0);
+			add += print_from_to(start, p,
+								 params.l_modifier || params.h_modifier ? p - 1 : 0);
 		else
-			add += get_print_func(p, a_args, &params);
+			add += get_print_func(p, aa, &params);
 	}
 	_putchar(BUF_FLUSH);
-	va_end(a_args);
+	va_end(aa);
 	return (add);
 }
+/* Code Credit: Ugobo ThankGod & Paul Sabonde  */
