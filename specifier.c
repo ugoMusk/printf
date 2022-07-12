@@ -6,7 +6,7 @@
  *
  * Return: the number of bytes printed
  */
-int (*get_specifier(char *s))(va_list ap, params_t *params)
+int (*get_specifier(char *s))(va_list aa, params_t *params)
 {
 	specifier_t specifiers[] = {
 		{"c", print_char},
@@ -45,12 +45,12 @@ int (*get_specifier(char *s))(va_list ap, params_t *params)
  *
  * Return: the number of bytes printed
  */
-int get_print_func(char *s, va_list ap, params_t *params)
+int get_print_func(char *s, va_list aa, params_t *params)
 {
 	int (*f)(va_list, params_t *) = get_specifier(s);
 
 	if (f)
-		return (f(ap, params));
+		return (f(aa, params));
 	return (0);
 }
 
@@ -124,7 +124,7 @@ char *get_width(char *s, params_t *params, va_list ap)
 
 	if (*s == '*')
 	{
-		d = va_arg(ap, int);
+		d = va_arg(aa, int);
 		s++;
 	}
 	else
