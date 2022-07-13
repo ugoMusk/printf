@@ -1,5 +1,6 @@
 # -*- mode: gitignore; -*-
 *~
+*.o
 # putchar
 _putchar.c
 *.c.swp

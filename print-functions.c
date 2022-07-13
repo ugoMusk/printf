@@ -35,7 +35,7 @@ int print_int(va_list aa, params_t *params)
 	if (params->l_modifier)
 		l = va_arg(aa, long);
 	else if (params->h_modifier)
-		l = (short inti)va_arg(aa, int);
+		l = (short int)va_arg(aa, int);
 	else
 		l = (int)va_arg(aa, int);
 	return (print_number(convert(l, 10, 0, params), params));
